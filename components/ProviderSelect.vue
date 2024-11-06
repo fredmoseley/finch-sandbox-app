@@ -15,13 +15,13 @@ const providers = ['adp_run','bamboo_hr','bamboo_hr_api','gusto','humaans','insp
 
 async function onProviderChange(selection: string) {
   try {
-  const  response: ApiResnsponse  = await $fetch(`/api/sandbox/create?provider_id=${selection}`);
-    if (response.success) {
-      emit('provider-selected', selection);
+    const  response: ApiResnsponse  = await $fetch(`/api/sandbox/create?provider_id=${selection}`);
+      if (response.success) {
+        emit('provider-selected', selection);
+      }
+    } catch(error: unknown) {
+      throw showError(error as NuxtError);
     }
-  } catch(error: unknown) {
-    throw showError(error as NuxtError);
-  }
 }
 </script>
 
