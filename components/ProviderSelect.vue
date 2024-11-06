@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { showError } from 'nuxt/app'
 import { ref } from 'vue';
+import type { NuxtError } from 'nuxt/app'
 
 interface ApiResnsponse {
   success: boolean
@@ -9,7 +10,7 @@ const emit = defineEmits<{
   (event:'provider-selected', provider: string): void;
 }>()
 const selected = ref<string>('')
-const providers = ['gusto', 'bamboohr', 'justworks','paychex_flex', 'workday']
+const providers = ['adp_run','bamboo_hr','bamboo_hr_api','gusto','humaans','insperity', 'justworks','namely','paychex_flex', 'paychex_flex_api','paycom','paycom_api','paylocity','paylocity_api','personio','quickbooks','rippling','sage_hr','sapling', 'sequoia_one','square_payroll', 'trinet','ulti_pro','wave','workday', 'zenefits','zenefits_api'];
 
 
 async function onProviderChange(selection: string) {
@@ -18,8 +19,8 @@ async function onProviderChange(selection: string) {
     if (response.success) {
       emit('provider-selected', selection);
     }
-  } catch(error) {
-    throw showError(error);
+  } catch(error: unknown) {
+    throw showError(error as NuxtError);
   }
 }
 </script>
