@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    finchApiBaseUrl: process.env.FINCH_API_BASE_URL
+    finchApiBaseUrl: process.env.FINCH_API_BASE_URL,
+    finchApiVersion: process.env.FINCH_API_VERSION
   },
   sourcemap: {
     server: true,
