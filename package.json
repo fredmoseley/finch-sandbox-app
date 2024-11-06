@@ -13,6 +13,8 @@
   "dependencies": {
     "@nuxt/ui": "^2.18.7",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@tryfinch/finch-api": "^6.9.0",
+    "ioredis": "^5.4.1",
     "nuxt": "^3.13.2",
     "vue": "latest",
     "vue-router": "latest"
@@ -22,6 +24,5 @@
     "prettier-plugin-tailwindcss": "^0.6.8",
     "typescript": "^5.6.3",
     "vue-tsc": "^2.1.10"
-  },
-  "packageManager": "pnpm@7.26.2+sha1.628d4e3ef0e4a9850018c34516594055f9160859"
+  }
 }
