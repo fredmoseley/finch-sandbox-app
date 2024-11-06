@@ -13,6 +13,19 @@ export default defineNuxtConfig({
     client: true
   },
   typescript: {
-    strict: true
+    strict: true,
+    typeCheck: true
+  },
+  nitro: {
+    storage: {
+      redis: {
+        driver: 'redis',
+        port: process.env.REDIS_PORT,
+        host: process.env.REDIS_HOST,
+        username: process.env.REDIS_USERNAME,
+        password: process.env.REDIS_PASSWORD,
+        db: process.env.REDIS_DB
+      }
+    }
   }
 })
