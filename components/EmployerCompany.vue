@@ -3,7 +3,7 @@ import type { Finch } from '@tryfinch/finch-api'
  import type { NuxtError } from 'nuxt/app'
  import { employerCompanyDataTest } from '~/utils/testdata'
 
-const testing = ref<boolean>(true)
+const testing = ref<boolean>(false)
 const { provider } = defineProps<{ provider: string }>()
 const employerCompany = ref<any>({});
 onMounted(()=>{
@@ -18,15 +18,15 @@ onMounted(()=>{
 
 async function loadEmployerCompany() {
     try {
-        // const employerCompanyResponse: any = await $fetch('/api/employer/company')
-        // console.log('employerComanyResponse: ', employerComanyResponse);
-        // if (employerCompanyResponse) {
-        //     employerCompany.value
-        // } else {
+        const employerCompanyResponse: any = await $fetch('/api/employer/company')
+        console.log('employerComanyResponse: ', employerCompanyResponse);
+        if (employerCompanyResponse) {
+            employerCompany.value = employerCompanyResponse
+        } else {
             employerCompany.value = employerCompanyDataTest
             testing.value
              console.log('employerCompanyXXXX: ', employerCompany.value.id);
-        // }
+        }
     } catch(error) {
         throw showError(error as NuxtError);
     }
