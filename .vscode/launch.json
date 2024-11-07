@@ -34,10 +34,7 @@
       },
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "pnpm",
-      "windows": {
-        "runtimeExecutable": "pnpm.cmd"
-      },
+      "runtimeExecutable": "npm",
       "runtimeArgs": ["dev"]
     }
   ],
