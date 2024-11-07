@@ -3,6 +3,7 @@ import type { Finch } from '@tryfinch/finch-api'
 import type { NuxtError } from 'nuxt/app'
 import { employeePersonalDataTest } from '~/utils/testdata';
 
+const testing = ref<boolean>(false)
 const { employeeId } = defineProps<{ employeeId: string }>()
 const employeePersonalData = ref<Finch.HRIS.Individual>();
 onMounted(()=>{
@@ -27,22 +28,25 @@ async function loadEmployeeData(employeeId: string) {
       }
     })
     console.log('employeePersonalDataResponse: ', employeePersonalDataResponse);
-    if (employeePersonalDataTest) {
-      employeePersonalData.value = employeePersonalDataTest.responses[0].body as Finch.HRIS.Individual
+
+    if (employeePersonalDataResponse[0].code === 200) {
+      employeePersonalData.value = employeePersonalDataResponse[0].body
     } else {
-    employeePersonalData.value = employeePersonalDataResponse[0].body
+      employeePersonalData.value = employeePersonalDataTest.responses[0].body as Finch.HRIS.Individual
+      testing.value = true
+
     }
-    
   } catch(error) {
     throw showError(error as NuxtError);
   }
 }
 </script>
 <template>
-  <div class="mb-8 text-5xl" >
+  <div class="mb-8 text-3xl" >
     <h1>Employee Personal Data</h1>
+    <h1 v-if="testing">TEST DATA</h1>
   </div>
-  <UForm v-if="employeePersonalData" ref="form" :state="employeePersonalData" class="mb-16">
+  <UForm v-if="employeePersonalData?.id" ref="form" :state="employeePersonalData" class="mb-16">
     <UFormGroup label="Id" name="id" class="mb-4">
       <UInput v-model="employeePersonalData.id"  readonly/>
     </UFormGroup>

@@ -6,6 +6,7 @@ const { provider } = defineProps<{
   provider: String
 }>()
 
+const testing = ref<boolean>(false)
 const selected = ref<number[]>([]);
 const employerDirectory = ref<Finch.HRIS.Directory.IndividualInDirectory[]>([]);
 // hide the checkbox column
@@ -18,16 +19,16 @@ onMounted(()=>{
   watchEffect(() => {
   if (provider) {
     console.log('EmployerDirectory watcheffect triggered', provider);
-    loadData();
+    loadEmployerDirectory();
   }
   })
 })
-async function loadData() {
+async function loadEmployerDirectory() {
   try {
     const employerDirectoryResponse: Finch.HRIS.Directory.IndividualInDirectory[] = await $fetch('/api/employer/directory')
     console.log('employerDirectoryResponse: ', employerDirectoryResponse);
     employerDirectory.value = employerDirectoryResponse
-    
+    // employerDirectory.value = employeeDirectoryTest.individuals as Finch.HRIS.Directory.IndividualInDirectory[]
   } catch(error) {
     throw showError(error as NuxtError);
   }
@@ -49,5 +50,6 @@ async function navigateToEmployee(employeeId: string) {
 </script>
 
 <template>
-  <UTable v-model="selected" :ui="tableUI" :rows="employeeDirectoryTest.individuals" @select="select" />
+  <h1 class="mb-8 text-3xl" v-if="testing">TEST DATA</h1>
+  <UTable v-model="selected" :ui="tableUI" :rows="employerDirectory" @select="select" />
 </template>

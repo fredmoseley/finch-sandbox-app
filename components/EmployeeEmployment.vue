@@ -1,9 +1,9 @@
 <script setup lang="ts">
  import type { Finch } from '@tryfinch/finch-api'
  import type { NuxtError } from 'nuxt/app'
-import { routeLocationKey } from 'vue-router';
  import { employeeEmploymentDataTest } from '~/utils/testdata'  
 
+ const testing = ref<boolean>(false)
  const { employeeId } = defineProps<{ employeeId: string }>()
  const employeeEmploymentData = ref<any>();
 
@@ -19,31 +19,35 @@ import { routeLocationKey } from 'vue-router';
 
 async function loadEmploymentData(employeeId: string) {
   try {
-    // const employeeEmploymentDataResponse: Finch.HRIS.IndividualResponse[] = await $fetch('/api/employer/employment', {
-    //   method: 'POST',
-    //   body: {
-    //     requests: [
-    //       {
-    //       individual_id: employeeId
-    //     }]
-    //   }
-    // })
-    // console.log('employeeEmploymentDataResponse: ', employeeEmploymentDataResponse);
-    if (employeeEmploymentDataTest) {
-      employeeEmploymentData.value = employeeEmploymentDataTest.responses[0].body
+    const employeeEmploymentDataResponse: Finch.HRIS.IndividualResponse[] = await $fetch('/api/employer/employment', {
+      method: 'POST',
+      body: {
+        requests: [
+          {
+          individual_id: employeeId
+        }]
+      }
+    })
+    console.log('employeeEmploymentDataResponse: ', employeeEmploymentDataResponse);
+   
+    if (employeeEmploymentDataResponse[0].code === 200) {
+      employeeEmploymentData.value = employeeEmploymentDataResponse[0].body
     } else {
-      // employeeEmploymentData.value = employeeEmploymentDataResponse[0].body
+      employeeEmploymentData.value = employeeEmploymentDataTest.responses[0].body
+      testing.value= true
     }
   } catch(error) {
     throw showError(error as NuxtError);
   }
 }
 </script>
-    <template>
-      <div class="mb-8 text-5xl">
-        <h1>Employee Employment</h1>
-      </div>
-      <UForm v-if="employeeEmploymentData" ref="form" :state="employeeEmploymentData" class="mb-16">
+<template>
+  <div class="mb-8 text-3xl">
+    <h1>Employee Employment</h1>
+    <h1 v-if="testing">TEST DATA</h1>
+  </div>
+
+  <UForm v-if="employeeEmploymentData?.id" ref="form" :state="employeeEmploymentData" class="mb-16">
     <UFormGroup label="Id" name="id" class="mb-4">
       <UInput v-model="employeeEmploymentData.id"  readonly/>
     </UFormGroup>
@@ -84,9 +88,7 @@ async function loadEmploymentData(employeeId: string) {
       <UInput v-model="employeeEmploymentData.end_date as string" readonly/>
     </UFormGroup>
 
-    <UFormGroup label="Is Active?" name="is_active" class="mb-4">
-      <UInput v-model="employeeEmploymentData.is_active as string" readonly/>
-    </UFormGroup>
+      <UCheckbox v-model="employeeEmploymentData.is_active" name="is_active" label='Is Active?' readonly/>
 
     <UFormGroup label="Class Code" name="class_code" class="mb-4">
       <UInput v-model="employeeEmploymentData.class_code as string" readonly/>
