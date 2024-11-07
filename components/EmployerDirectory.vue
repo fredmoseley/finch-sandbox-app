@@ -3,7 +3,7 @@ import type { Finch } from '@tryfinch/finch-api'
 import type { NuxtError } from 'nuxt/app'
 import { employeeDirectoryTest } from '@/utils/testdata'
 const { provider } = defineProps<{
-  provider: String
+  provider: string
 }>()
 
 const testing = ref<boolean>(false)
