@@ -9,3 +9,7 @@ export interface SandboxCreateResponse {
     products: string[],
     emplyoee_size? : number
   }
+
+  export interface SusccessResponse {
+    success: boolean
+  }

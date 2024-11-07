@@ -2,10 +2,8 @@
 import { showError } from 'nuxt/app'
 import { ref } from 'vue';
 import type { NuxtError } from 'nuxt/app'
+import type { SusccessResponse } from '~/types';
 
-interface ApiResnsponse {
-  success: boolean
-}
 const emit = defineEmits<{
   (event:'provider-selected', provider: string): void;
 }>()
@@ -15,8 +13,8 @@ const providers = ['adp_run','bamboo_hr','bamboo_hr_api','gusto','humaans','insp
 
 async function onProviderChange(selection: string) {
   try {
-    const  response: ApiResnsponse  = await $fetch(`/api/sandbox/create?provider_id=${selection}`);
-      if (response.success) {
+    const  sandboxCreateResponse: SusccessResponse  = await $fetch(`/api/sandbox/create?provider_id=${selection}`);
+      if (sandboxCreateResponse.success) {
         emit('provider-selected', selection);
       }
     } catch(error: unknown) {

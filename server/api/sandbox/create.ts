@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Basic ${credentials}`
+        'Authorization': `Basic ${credentials}`
       },
       body: {
         provider_id,
@@ -30,7 +30,6 @@ export default defineEventHandler(async (event) => {
       success: true
     }
   } catch (error) {
-    console.log('error', error)
     const { statusCode, statusMessage, data } = error as NuxtError
     throw createError({
       statusCode: statusCode,
