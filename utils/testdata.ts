@@ -242,3 +242,181 @@ export const employeeEmploymentDataTest = {
     }
   ]
 }
+
+export const employerCompanyDataTest = {
+  "id": "bbd97f2a-dbc8-45f9-9dab-8c503ad7a9c5",
+  "legal_name": "Sweltering Town, Inc",
+  "entity": {
+    "type": "sole_proprietor",
+    "subtype": "b_corporation"
+  },
+  "ein": "74-8006135",
+  "primary_email": "Elisha_Jenkins@sweltering-town-inc.com",
+  "primary_phone_number": "6907052238",
+  "departments": [
+    {
+      "name": "Security",
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": "Integration",
+      "parent": {
+        "name": "Security"
+      }
+    },
+    {
+      "name": "Mobility",
+      "parent": {
+        "name": "Security"
+      }
+    },
+    {
+      "name": "Branding",
+      "parent": {
+        "name": "Integration"
+      }
+    },
+    {
+      "name": "Division",
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": "Assurance",
+      "parent": {
+        "name": "Security"
+      }
+    },
+    {
+      "name": "Mobility",
+      "parent": {
+        "name": "Mobility"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "line1": "61608 Kacie Villages",
+      "line2": "Apt. 268",
+      "city": "Dandreville",
+      "state": "NC",
+      "postal_code": "32107-5671",
+      "country": "US"
+    },
+    {
+      "line1": "2930 Bergnaum Centers",
+      "line2": "Apt. 513",
+      "city": "Zboncakhaven",
+      "state": "NC",
+      "postal_code": "50135",
+      "country": "US"
+    },
+    {
+      "line1": "12756 Wilderman Flat",
+      "line2": "Suite 091",
+      "city": "South Jenniferbury",
+      "state": "NH",
+      "postal_code": "07293-6991",
+      "country": "US"
+    }
+  ],
+  "accounts": [
+    {
+      "institution_name": "CAPITAL ONE",
+      "account_name": null,
+      "account_number": "7455629915",
+      "account_type": "checking",
+      "routing_number": "833112929"
+    }
+  ]
+}
+
+export const badCompanyDataTest = {
+  "id": "c208ce8f-7094-4100-9444-14ceaab1f6cb",
+  "legal_name": "Sane Consulate LLC",
+  "entity": {
+    "type": "cooperative",
+    "subtype": "c_corporation"
+  },
+  "ein": null,
+  "primary_email": null,
+  "primary_phone_number": null,
+  "departments": [
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    },
+    {
+      "name": null,
+      "parent": {
+        "name": null
+      }
+    }
+  ],
+  "locations": [
+    {
+      "line1": "6659 Adams Loaf",
+      "line2": "Suite 941",
+      "city": "New Magdalena",
+      "state": "CT",
+      "postal_code": "75623-3086",
+      "country": "US"
+    },
+    {
+      "line1": "2485 Reagan Groves",
+      "line2": "Apt. 776",
+      "city": "West Lizzieburgh",
+      "state": "WV",
+      "postal_code": "50703-3290",
+      "country": "US"
+    }
+  ],
+  "accounts": null
+}
