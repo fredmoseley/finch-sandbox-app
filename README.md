@@ -4,7 +4,7 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
-Make sure to install dependencies:
+1.  Make sure to install dependencies:
 
 ```bash
 # npm
@@ -19,7 +19,21 @@ yarn install
 # bun
 bun install
 ```
-
+2. Install redis
+3. Start redis service preferable on default HOST and PORT.  If necessary you can change these settings in .env
+4. Create .env
+```CLIENT_ID=945e8be7-0d90-4b39-9f7c-453a5e848602
+CLIENT_SECRET= {{Your Finch API Client Secret}}
+FINCH_API_BASE_URL=https://sandbox.tryfinch.com/api
+FINCH_API_VERSION=2020-09-17
+REDIS_PORT=6379
+REDIS_HOST=127.0.0.1
+REDIS_USERNAME=
+REDIS_PASSWORD=
+REDIS_DB=0
+```
+5. Run development server.
+6. Select a provider to load the application with data.
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
