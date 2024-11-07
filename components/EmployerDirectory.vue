@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Finch } from '@tryfinch/finch-api'
 import type { NuxtError } from 'nuxt/app'
-
+import { employeeDirectoryTest } from '@/utils/testdata'
 const { provider } = defineProps<{
   provider: String
 }>()
@@ -24,7 +24,7 @@ onMounted(()=>{
 })
 async function loadData() {
   try {
-    const employerDirectoryResponse: Finch.HRIS.Directory.IndividualInDirectory[] = await $fetch('api/employer/directory')
+    const employerDirectoryResponse: Finch.HRIS.Directory.IndividualInDirectory[] = await $fetch('/api/employer/directory')
     console.log('employerDirectoryResponse: ', employerDirectoryResponse);
     employerDirectory.value = employerDirectoryResponse
     
@@ -33,17 +33,21 @@ async function loadData() {
   }
 }
 
-function select(row: number) {
+function select(row: any) {
   selected.value.length = 0;
   selected.value.push(row);
-  console.log('selected: ', selected.value);
-  // this should trigger a route change to employee details page
-  //normally this would be employee/id
+  console.log('selected: ', selected.value[0]);
+  navigateToEmployee(row.id);
 }
 
+async function navigateToEmployee(employeeId: string) {
 
+  await navigateTo({
+      path: `/employee/${employeeId}`,
+    })
+}
 </script>
 
 <template>
-  <UTable v-model="selected" :ui="tableUI" :rows="employerDirectory" @select="select" />
+  <UTable v-model="selected" :ui="tableUI" :rows="employeeDirectoryTest.individuals" @select="select" />
 </template>
