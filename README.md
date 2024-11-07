@@ -34,6 +34,13 @@ REDIS_DB=0
 ```
 5. Run development server.
 6. Select a provider to load the application with data.
+7. If you receive a 500 error you load testing data by setting the following variables in localStorage variables to true.
+```
+EmployerCompanyTesting
+EmployerDirectoryTesting
+```
+
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
