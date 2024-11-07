@@ -8,5 +8,6 @@ const onProviderSelected = (provider: string) => {
 
 <template>
     <ProviderSelect @provider-selected="onProviderSelected"/>
+    <EmployerCompany :provider="currentProvider" />
     <EmployerDirectory :provider="currentProvider"  />
 </template>
