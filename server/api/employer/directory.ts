@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
       headers: {
         'Content-Type': 'application/json',
         'Finch-Version': finchApiVersion,
-        Authorization: `Bearer ${accessToken}`
+        'Authorization': `Bearer ${accessToken}`
       }
     })
     return employerDirectory.individuals
