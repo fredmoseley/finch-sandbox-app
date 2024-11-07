@@ -2,11 +2,13 @@
 import type { Finch } from '@tryfinch/finch-api'
 import type { NuxtError } from 'nuxt/app'
 import { employeeDirectoryTest } from '@/utils/testdata'
+import { getLocalStorage } from '~/utils/helper';
 const { provider } = defineProps<{
   provider: string
 }>()
 
-const testing = ref<boolean>(true)
+
+const testing = ref<boolean>(false)
 const selected = ref<number[]>([])
 const employerDirectory = ref<Finch.HRIS.Directory.IndividualInDirectory[]>([])
 // hide the checkbox column
@@ -16,6 +18,7 @@ const tableUI = {
 
 onMounted(() => {
   console.log('EmployerDirectory component mounted')
+  testing.value = getLocalStorage('EmployerDirectoryTesting') || getLocalStorage('FinchSandboxTestAll')
   watchEffect(() => {
     if (provider) {
       console.log('EmployerDirectory watcheffect triggered', provider)

@@ -2,14 +2,17 @@
 import type { Finch } from '@tryfinch/finch-api'
 import type { NuxtError } from 'nuxt/app'
 import { employerCompanyDataTest, badCompanyDataTest } from '~/utils/testdata'
+import { getLocalStorage } from '~/utils/helper';
 
-const testing = ref<boolean>(true)
+const testing = ref<boolean>(false)
 const { provider } = defineProps<{ provider: string }>()
 const employerCompany = ref<any>({})
 onMounted(() => {
+  testing.value = getLocalStorage('EmployerCompanyTesting') || getLocalStorage('FinchSandboxTestAll')
   console.log('EmployerCompany component mounted')
   if (testing.value) {
-    employerCompany.value = employerCompanyDataTest
+    const useBadData = getLocalStorage('FinchSandboxUseBadData')
+    employerCompany.value = useBadData ? badCompanyDataTest : employerCompanyDataTest
   } else {
     watchEffect(() => {
       if (provider) {
