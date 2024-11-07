@@ -27,11 +27,11 @@ async function loadEmployeeData(employeeId: string) {
       }
     })
     console.log('employeePersonalDataResponse: ', employeePersonalDataResponse);
-    // if (employeePersonalDataTest) {
-      // employeePersonalData.value = employeePersonalDataTest.responses[0].body as Finch.HRIS.Individual
-    // } else {
+    if (employeePersonalDataTest) {
+      employeePersonalData.value = employeePersonalDataTest.responses[0].body as Finch.HRIS.Individual
+    } else {
     employeePersonalData.value = employeePersonalDataResponse[0].body
-    // }
+    }
     
   } catch(error) {
     throw showError(error as NuxtError);
@@ -66,8 +66,10 @@ async function loadEmployeeData(employeeId: string) {
     </UFormGroup>
     <UFormGroup v-for="(phone_number, index) in employeePersonalData.phone_numbers" :key="index" label="Phone Numbers" name="phone_numbers" class="mb-4">
       <div v-if="phone_number" class="ml-4">
-        <UInput v-model="phone_number.data  as string" readonly/>
-        <UInput v-model="phone_number.type  as string" readonly/>
+        <div v-for="(value, key, index) in phone_number">
+        {{ key }}
+        <UInput v-model="phone_number[key]  as string" readonly/>
+        </div>
       </div>
   </UFormGroup>
     <UFormGroup label="Gender" name="gender" class="mb-4">
