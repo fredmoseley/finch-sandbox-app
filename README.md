@@ -34,7 +34,7 @@ REDIS_DB=0
 ```
 5. Run development server.
 6. Select a provider to load the application with data.
-7. If you receive a 500 error you load testing data by setting the following variables in localStorage variables to true.
+7. If you receive a 500 error you load testing data by setting the following variables in localStorage variables to true. Use the first user in the grid, Mike Lincoln Bartoletti, for testing.  His data is hard coded for the Employee details view. 
 ```
 EmployerCompanyTesting
 EmployerDirectoryTesting
