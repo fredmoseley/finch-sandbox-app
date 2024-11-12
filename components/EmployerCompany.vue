@@ -74,11 +74,14 @@ async function loadEmployerCompany() {
       name="entity"
       class="mb-4"
     >
+    <div class="ml4">
       {{ key }}
-      <UInput
+      <UInput 
+        class="ml-4"
         v-model="employerCompany.entity[key] as string"
         readonly
       />
+    </div>
     </UFormGroup>
 
     <UFormGroup
