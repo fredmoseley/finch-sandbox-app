@@ -57,12 +57,10 @@ async function navigateToEmployee(employeeId: string) {
 </script>
 
 <template>
-  <h1
-    class="mb-8 text-3xl"
-    v-if="testing"
-  >
-    TEST DATA
-  </h1>
+  <div class="mb-8 text-3xl">
+  <h1>Employer Directory</h1>
+  <h1 v-if="testing">TEST DATA</h1>
+  </div>
   <UTable
     v-model="selected"
     :ui="tableUI"
