@@ -22,8 +22,7 @@ export default defineEventHandler(async (event) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${credentials}`,
-          'Finch-API-Version': finchApiVersion
+          Authorization: `Basic ${credentials}`
         },
         body: requestBody
       }
