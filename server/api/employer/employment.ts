@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
-        'Finch-Version': finchApiVersion
+        'Finch-API-Version': finchApiVersion
       },
       body: {
         requests

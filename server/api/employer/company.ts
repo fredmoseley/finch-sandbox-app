@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Finch-Version': finchApiVersion,
+        'Finch-API-Version': finchApiVersion,
         Authorization: `Bearer ${accessToken}`
       }
     })
