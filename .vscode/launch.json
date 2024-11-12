@@ -34,7 +34,7 @@
       },
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "npm",
+      "runtimeExecutable": "pnpm",
       "runtimeArgs": ["dev"]
     }
   ],
