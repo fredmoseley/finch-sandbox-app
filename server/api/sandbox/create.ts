@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const redis = useStorage('redis')
 
   try {
-    const sandboxCreateResponse: SandboxCreateResponse = await $fetch(`${finchApiBaseUrl}/sandbox/create`, {
+    const sandboxCreateResponse: SandboxCreateResponse = await $fetch(`${finchApiBaseUrl}/sandbox/connections`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
