@@ -8,7 +8,7 @@ const emit = defineEmits<{
   (event:'provider-selected', provider: string): void;
 }>()
 const selected = ref<string>('')
-const providers = ['adp_run','bamboo_hr','bamboo_hr_api','gusto','humaans','insperity', 'justworks','namely','paychex_flex', 'paychex_flex_api','paycom','paycom_api','paylocity','paylocity_api','personio','quickbooks','rippling','sage_hr','sapling', 'sequoia_one','square_payroll', 'trinet','ulti_pro','wave','workday', 'zenefits','zenefits_api'];
+const providers = ['adp_run','bamboo_hr','bamboo_hr_api','gusto','humaans','insperity', 'justworks','namely','paychex_flex','paycom','paycor','paylocity','paylocity_api','personio','quickbooks','rippling','sage_hr','sapling', 'sequoia_one','square_payroll', 'trinet','ulti_pro','wave','workday', 'zenefits','zenefits_api'];
 
 
 async function onProviderChange(selection: string) {
