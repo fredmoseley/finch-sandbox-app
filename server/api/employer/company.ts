@@ -26,10 +26,10 @@ export default defineEventHandler(async (event) => {
   return employerCompany
   } catch (error: unknown) {
     const { statusCode, statusMessage, data } = error as NuxtError
-    // throw createError({
-    //   statusCode: statusCode,
-    //   statusMessage: statusMessage,
-    //   data: data
-    // })
+    throw createError({
+      statusCode,
+      statusMessage,
+      data
+    })
   }
 })
