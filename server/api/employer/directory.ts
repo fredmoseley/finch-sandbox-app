@@ -26,9 +26,9 @@ export default defineEventHandler(async (event) => {
   } catch (error: unknown) {
     const { statusCode, statusMessage, data } = error as NuxtError
     throw createError({
-      statusCode: statusCode,
-      statusMessage: statusMessage,
-      data: data
+      statusCode,
+      statusMessage,
+      data
     })
   }
 })

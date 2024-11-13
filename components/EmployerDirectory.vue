@@ -9,6 +9,7 @@ const { provider } = defineProps<{
 
 
 const testing = ref<boolean>(false)
+const notImplemented = ref<boolean>(false)
 const selected = ref<number[]>([])
 const employerDirectory = ref<Finch.HRIS.Directory.IndividualInDirectory[]>([])
 // hide the checkbox column
@@ -31,10 +32,16 @@ async function loadEmployerDirectory() {
     const employerDirectoryResponse: Finch.HRIS.Directory.IndividualInDirectory[] =
       await $fetch('/api/employer/directory')
     console.log('employerDirectoryResponse: ', employerDirectoryResponse)
+    notImplemented.value = false
     employerDirectory.value = employerDirectoryResponse
     // employerDirectory.value = employeeDirectoryTest.individuals as Finch.HRIS.Directory.IndividualInDirectory[]
   } catch (error) {
+    const nuxtError = error as NuxtError
+    if (nuxtError.statusCode===501) {
+      notImplemented.value = true
+    } else {
     throw showError(error as NuxtError)
+    }
   }
 }
 
@@ -60,6 +67,7 @@ async function navigateToEmployee(employeeId: string) {
   <div class="mb-8 text-3xl">
   <h1>Employer Directory</h1>
   <h1 v-if="testing">TEST DATA</h1>
+  <h1 v-if="notImplemented">NOT IMPLEMENTED</h1>
   </div>
   <UTable
     v-model="selected"
