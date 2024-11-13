@@ -5,7 +5,7 @@ import { Product } from '~/utils/constants'
 
 export default defineEventHandler(async (event) => {
   const { provider_id } = getQuery(event)
-  const { clientId, clientSecret, finchApiBaseUrl, finchApiVersion } = useRuntimeConfig()
+  const { clientId, clientSecret, finchApiBaseUrl } = useRuntimeConfig()
   const products = [Product.Company, Product.Directory, Product.Individual, Product.Employment]
 
   const requestBody: Finch.Sandbox.ConnectionCreateParams = {

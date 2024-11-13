@@ -24,7 +24,7 @@ bun install
 4. Create .env
 ```CLIENT_ID=945e8be7-0d90-4b39-9f7c-453a5e848602
 CLIENT_SECRET= {{Your Finch API Client Secret}}
-FINCH_API_BASE_URL=https://sandbox.tryfinch.com/api
+FINCH_API_BASE_URL=https://api.tryfinch.com
 FINCH_API_VERSION=2020-09-17
 REDIS_PORT=6379
 REDIS_HOST=127.0.0.1
