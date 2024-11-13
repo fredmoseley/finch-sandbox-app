@@ -14,22 +14,22 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const employerCompany: any = await $fetch(`${finchApiBaseUrl}/employer/company`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Finch-API-Version': finchApiVersion,
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-    console.log('api/employer/company employerCompany: ', employerCompany)
-    return employerCompany
+  const employerCompany: any = await $fetch(`${finchApiBaseUrl}/employer/company`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Finch-API-Version': finchApiVersion,
+      Authorization: `Bearer ${accessToken}`
+    }
+  })
+  console.log('api/employer/company employerCompany: ', employerCompany)
+  return employerCompany
   } catch (error: unknown) {
     const { statusCode, statusMessage, data } = error as NuxtError
-    throw createError({
-      statusCode: statusCode,
-      statusMessage: statusMessage,
-      data: data
-    })
+    // throw createError({
+    //   statusCode: statusCode,
+    //   statusMessage: statusMessage,
+    //   data: data
+    // })
   }
 })

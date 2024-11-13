@@ -5,6 +5,7 @@ import { employerCompanyDataTest, badCompanyDataTest } from '~/utils/testdata'
 import { getLocalStorage } from '~/utils/helper';
 
 const testing = ref<boolean>(false)
+const notImplemented = ref<boolean>(false)
 const { provider } = defineProps<{ provider: string }>()
 const employerCompany = ref<any>({})
 onMounted(() => {
@@ -26,10 +27,16 @@ onMounted(() => {
 async function loadEmployerCompany() {
   try {
     const employerCompanyResponse: any = await $fetch('/api/employer/company')
-    console.log('employerComanyResponse: ', employerCompanyResponse)
+    console.log('employerCompanyResponse: ', employerCompanyResponse)
+    notImplemented.value = false
     employerCompany.value = employerCompanyResponse
   } catch (error) {
-    throw showError(error as NuxtError)
+    const nuxtError = error as NuxtError
+    if (nuxtError.statusCode===501) {
+      notImplemented.value = true
+    } else {
+      throw showError(error as NuxtError)
+    }
   }
 }
 </script>
@@ -37,6 +44,7 @@ async function loadEmployerCompany() {
   <div class="mb-8 text-3xl">
     <h1>Employer Company</h1>
     <h1 v-if="testing">TEST DATA</h1>
+    <h1 v-if="notImplemented">NOT IMPLEMENTED</h1>
   </div>
 
   <UForm
