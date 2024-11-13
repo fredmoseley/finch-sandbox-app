@@ -68,8 +68,8 @@ async function loadEmploymentData(employeeId: string) {
       <UInput v-model="employeeEmploymentData.title as string" />
     </UFormGroup>
 
-    <UFormGroup label="Manager Id" name="manager_id" class="mb-4">
-      <UInput v-model="employeeEmploymentData?.manager?.id" />
+    <UFormGroup v-if="employeeEmploymentData.manager" label="Manager Id" name="manager_id" class="mb-4">
+      <UInput v-model="employeeEmploymentData.manager.id" />
     </UFormGroup>
 
     <UFormGroup v-for="(employmentValue, employmentKey, employmentIndex) in employeeEmploymentData.employment" :key="employmentIndex" :label="`Employment - ${employmentKey}`" name="employmentKey" class="mb-4">
