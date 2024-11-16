@@ -4,8 +4,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxtjs/tailwindcss'],
   runtimeConfig: {
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    finchClientId: process.env.FINCH_CLIENT_ID,
+    finchClientSecret: process.env.FINCH_CLIENT_SECRET,
     finchApiBaseUrl: process.env.FINCH_API_BASE_URL,
     finchApiVersion: process.env.FINCH_API_VERSION
   },

@@ -5,14 +5,14 @@ import { Product } from '~/utils/constants'
 
 export default defineEventHandler(async (event) => {
   const { provider_id } = getQuery(event)
-  const { clientId, clientSecret, finchApiBaseUrl } = useRuntimeConfig()
+  const { finchClientId, finchClientSecret, finchApiBaseUrl } = useRuntimeConfig()
   const products = [Product.Company, Product.Directory, Product.Individual, Product.Employment]
 
   const requestBody: Finch.Sandbox.ConnectionCreateParams = {
     provider_id: provider_id as string,
     products
   }
-  const credentials = btoa(`${clientId}:${clientSecret}`) // Encode to Base64
+  const credentials = btoa(`${finchClientId}:${finchClientSecret}`) // Encode to Base64
   const redis = useStorage('redis')
 
   try {
