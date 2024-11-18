@@ -28,6 +28,7 @@ onMounted(() => {
   })
 })
 async function loadEmployerDirectory() {
+  employerDirectory.value = []
   try {
     const employerDirectoryResponse: Finch.HRIS.Directory.IndividualInDirectory[] =
       await $fetch('/api/employer/directory')

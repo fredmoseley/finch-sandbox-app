@@ -5,7 +5,7 @@ import { employeePersonalDataTest } from '~/utils/testdata';
 
 const testing = ref<boolean>(false)
 const { employeeId } = defineProps<{ employeeId: string }>()
-const employeePersonalData = ref<Finch.HRIS.Individual>();
+const employeePersonalData = ref<Finch.HRIS.Individual>({});
 onMounted(()=>{
   console.log('EmployerPersonalData component mounted');
   watchEffect(() => {
@@ -17,6 +17,7 @@ onMounted(()=>{
 })
 
 async function loadEmployeeData(employeeId: string) {
+  employeePersonalData.value={}
   try {
     const employeePersonalDataResponse: Finch.HRIS.IndividualResponse[] = await $fetch('/api/employer/individual', {
       method: 'POST',
@@ -30,7 +31,7 @@ async function loadEmployeeData(employeeId: string) {
     console.log('employeePersonalDataResponse: ', employeePersonalDataResponse);
 
     if (employeePersonalDataResponse[0].code === 200) {
-      employeePersonalData.value = employeePersonalDataResponse[0].body
+      employeePersonalData.value = employeePersonalDataResponse[0].body || {}
     } else {
       employeePersonalData.value = employeePersonalDataTest.responses[0].body as Finch.HRIS.Individual
       testing.value = true

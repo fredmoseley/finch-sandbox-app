@@ -25,6 +25,7 @@ onMounted(() => {
 })
 
 async function loadEmployerCompany() {
+  employerCompany.value = {}
   try {
     const employerCompanyResponse: any = await $fetch('/api/employer/company')
     console.log('employerCompanyResponse: ', employerCompanyResponse)

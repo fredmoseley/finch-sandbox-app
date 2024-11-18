@@ -5,7 +5,7 @@
 
  const testing = ref<boolean>(false)
  const { employeeId } = defineProps<{ employeeId: string }>()
- const employeeEmploymentData = ref<any>();
+ const employeeEmploymentData = ref<any>({});
 
  onMounted(()=>{
   console.log('EmployerEmploymentData component mounted');
@@ -18,6 +18,7 @@
 })
 
 async function loadEmploymentData(employeeId: string) {
+  employeeEmploymentData.value = {}
   try {
     const employeeEmploymentDataResponse: Finch.HRIS.IndividualResponse[] = await $fetch('/api/employer/employment', {
       method: 'POST',
@@ -31,7 +32,7 @@ async function loadEmploymentData(employeeId: string) {
     console.log('employeeEmploymentDataResponse: ', employeeEmploymentDataResponse);
    
     if (employeeEmploymentDataResponse[0].code === 200) {
-      employeeEmploymentData.value = employeeEmploymentDataResponse[0].body
+      employeeEmploymentData.value = employeeEmploymentDataResponse[0].body || {}
     } else {
       employeeEmploymentData.value = employeeEmploymentDataTest.responses[0].body
       testing.value= true
